@@ -1,0 +1,25 @@
+# Configuration with secrets
+config.toml
+
+# Cache
+.cache/
+*.cache
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

@@ -1,0 +1,38 @@
+# gist-sync - Multi-platform gist/snippet synchronization configuration
+# Copy to ~/.config/gist-sync/config.toml or specify via --config
+
+[general]
+cache_dir = "~/.cache/gist-sync"
+log_level = "info"
+log_file = ""
+dry_run = false
+max_parallel = 5
+rate_limit_interval = 1
+http_timeout = 30
+
+[source]
+provider = "github"
+username = "username"
+token = "ghp_****"
+
+[source.filters]
+visibility = "all"
+
+[[targets]]
+name = "gitlab-personal"
+provider = "gitlab"
+enabled = true
+username = "username"
+token = "glpat-*****"
+base_url = "https://gitlab.com"
+on_conflict = "update"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "preserve"
+delete_orphans = false
+
+
+[hooks]
+
+[mappings]

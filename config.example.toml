@@ -1,0 +1,103 @@
+# gist-sync - Multi-platform gist/snippet synchronization configuration
+# Copy to ~/.config/gist-sync/config.toml or specify via --config
+
+[general]
+cache_dir = "~/.cache/gist-sync"
+log_level = "info"
+log_file = ""
+dry_run = false
+max_parallel = 5
+rate_limit_interval = 1
+http_timeout = 30
+
+[source]
+provider = "github"
+username = "your-username"
+# token = "ghp_xxxxxxxxxxxx"  # or use GIST_SYNC_SOURCE_TOKEN env var
+
+[source.filters]
+visibility = "all"
+# include_patterns = ["terraform", "aws", "shell"]
+# exclude_patterns = ["temp", "test", "wip"]
+# since = "2024-01-01T00:00:00Z"
+# gist_ids = ["abc123", "def456"]
+
+# Target destinations - add as many [[targets]] entries as needed
+# Sync settings are inline within each target (no nested [target.sync])
+
+[[targets]]
+name = "gitlab-personal"
+provider = "gitlab"
+enabled = true
+username = "your-username"
+# token = "glpat-xxxxxxxxxxxx"  # or GIST_SYNC_TARGET_GITLAB_PERSONAL_TOKEN
+# base_url = "https://gitlab.com"
+on_conflict = "update"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "preserve"
+delete_orphans = false
+
+[[targets]]
+name = "codeberg"
+provider = "codeberg"
+enabled = true
+username = "your-username"
+# token = "xxxxxxxx"
+on_conflict = "update"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "preserve"
+delete_orphans = false
+
+[[targets]]
+name = "gitea-selfhosted"
+provider = "gitea"
+enabled = false
+username = "your-username"
+base_url = "https://git.example.com"
+# token = "xxxxxxxx"
+on_conflict = "skip"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "preserve"
+delete_orphans = false
+
+[[targets]]
+name = "bitbucket"
+provider = "bitbucket"
+enabled = false
+username = "your-username"
+workspace = "your-workspace"
+# token = "xxxxxxxx"
+on_conflict = "update"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "preserve"
+delete_orphans = false
+
+[[targets]]
+name = "keybase"
+provider = "keybase"
+enabled = false
+username = "your-username"
+# team = "team-name"
+on_conflict = "update"
+preserve_description = true
+description_prefix = ""
+description_suffix = ""
+visibility_mode = "public"
+delete_orphans = false
+
+[hooks]
+# pre_sync = "echo 'Starting sync...'"
+# post_sync = "notify-send 'Gist sync complete'"
+# on_error = "echo 'Sync failed' | mail -s 'Gist sync error' admin@example.com"
+
+[mappings]
+# Format: gist_id = ["target1", "target2"] or "*" for all
+# "abc123def" = ["gitlab-personal", "codeberg"]
