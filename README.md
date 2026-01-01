@@ -2,7 +2,12 @@
 
 Multi-platform gist/snippet synchronizer.
 
-Sync your GitHub gists to multiple destinations: GitLab, Codeberg, Gitea, Forgejo, Bitbucket, and Keybase.
+Sync your GitHub gists to multiple snippets destinations: GitLab, Codeberg, Gitea, Forgejo, Bitbucket, and Keybase.
+
+<p align="center"> 
+<a href="https://esli.blog" target="_blank">
+  <img align="center" alt="octocat with sync icon" src="./gist-sync.png" width=60% />
+</a> 
 
 ## Why gist-sync?
 
